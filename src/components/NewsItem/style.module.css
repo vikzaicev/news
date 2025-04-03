@@ -1,0 +1,29 @@
+.baner {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #6688;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 14px;
+    margin: 0;
+    /* height: 200px; */
+    text-overflow: ellipsis;
+}
+.extra {
+    font-size: 12px;
+    margin: 0;
+}
+.wraperr {
+    width: 80px;
+    height: 74px;
+    background-color: #cfd4d6;
+    background-position: center;
+    background-size: cover;
+    flex-shrink: 0;
+}

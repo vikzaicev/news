@@ -2,6 +2,7 @@ import style from "./style.module.css"
 import { NewsBaner } from "../../components/NewsBaner/NewsBaner"
 import { useEffect, useState } from "react"
 import { getNews } from "../../api/api"
+import { NewsList } from "../../components/NewsList/NewsList"
 
 const DATA = [
     { id: '4fd50364-a9c4-4c49-a920-6cd59a6416c2', title: "GrabCab gets licence to run street-hail service, becoming Singapore's 6th taxi operator", description: "SINGAPORE: GrabCab will be Singapore's sixth taxi …to progressively expand its fleet to meet the min", url: 'https://www.channelnewsasia.com/singapore/grabcab-licence-taxi-operator-6th-lta-street-hail-5038846', author: 'CNA', },
@@ -91,6 +92,7 @@ export const Main = () => {
     return (
         <main className={style.main}>
             {news.length > 0 ? <NewsBaner item={news[0]} /> : null}
+            {news.length > 0 ? <NewsList news={news} /> : null}
 
         </main>
     )
