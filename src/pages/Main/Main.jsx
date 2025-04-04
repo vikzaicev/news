@@ -3,6 +3,7 @@ import { NewsBaner } from "../../components/NewsBaner/NewsBaner"
 import { useEffect, useState } from "react"
 import { getNews } from "../../api/api"
 import { NewsList } from "../../components/NewsList/NewsList"
+import { Skeleton } from "../../components/Skeleton/Skeleton"
 
 const DATA = [
     { id: '4fd50364-a9c4-4c49-a920-6cd59a6416c2', title: "GrabCab gets licence to run street-hail service, becoming Singapore's 6th taxi operator", description: "SINGAPORE: GrabCab will be Singapore's sixth taxi …to progressively expand its fleet to meet the min", url: 'https://www.channelnewsasia.com/singapore/grabcab-licence-taxi-operator-6th-lta-street-hail-5038846', author: 'CNA', },
@@ -75,12 +76,15 @@ const DATA = [
     ,]
 export const Main = () => {
     const [news, setNews] = useState([])
+    const [isLoading, setISLoading] = useState(true)
 
     useEffect(() => {
         const fethNews = async () => {
             try {
+                setISLoading(true)
                 const response = await getNews()
                 setNews(response.news)
+                setISLoading(false)
                 console.log(response.news);
 
             } catch (error) {
@@ -91,9 +95,8 @@ export const Main = () => {
     }, [])
     return (
         <main className={style.main}>
-            {news.length > 0 ? <NewsBaner item={news[0]} /> : null}
-            {news.length > 0 ? <NewsList news={news} /> : null}
-
+            {news.length > 0 && !isLoading ? <NewsBaner item={news[0]} /> : <Skeleton count={1} type={'baner'} />}
+            {!isLoading ? <NewsList news={news} /> : <Skeleton count={10} type='item' />}
         </main>
     )
 }
