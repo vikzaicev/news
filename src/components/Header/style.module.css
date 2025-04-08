@@ -3,7 +3,7 @@
     flex-direction: column;
     /* width: 100%; */
     padding: 12px 24px;
-    background-color: #f2f4f5;
+    background: linear-gradient(-90deg, #8181d7 0%, #cc7f7f 50%, #9a9ad3 100%);
     border-bottom: 2px solid #1b3a49;
     gap: 12px;
 }
