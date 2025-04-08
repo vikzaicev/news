@@ -10,7 +10,7 @@ function App() {
       <div className="contener">
         <Main />
       </div>
-      < NewsBaner />
+      {/* < NewsBaner /> */}
     </>
   )
 }
