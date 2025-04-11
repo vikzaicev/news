@@ -1,0 +1,13 @@
+.categori {
+    display: flex;
+
+    gap: 8px;
+}
+
+.item {
+    border: 1px solid #504b4b;
+    background-color: #796969;
+    border-radius: 12px;
+    padding: 5px 10px;
+    cursor: pointer;
+}

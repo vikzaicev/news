@@ -111,9 +111,23 @@ export function solution(n) {
 function solve(arr) {
     let res = []
     let minArr = arr.sort((a, b) => a - b)
-    let maxArr = arr.sort((a, b) => a - b)
-    console.log(minArr, maxArr);
-
-
+    let maxArr = [...arr].reverse()
+    for (let i = 0; i < maxArr.length; i++) {
+        //res.push(maxArr[i])
+        for (let j = 0; j < minArr.length; j++) {
+        }
+        res.push(maxArr[i], minArr[i])
+    }
+    console.log(res.slice(0, arr.length));
 };
 //solve([15, 11, 10, 7, 12])
+
+function dotProduct(v1, v2) {
+    for (let key in v1) {
+        console.log(key, v1[key]);
+
+    }
+
+
+}
+//dotProduct({ x: 2, y: 0, z: -1 }, { x: 0, y: -2, z: 1 })

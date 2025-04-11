@@ -1,14 +1,17 @@
 import style from "./style.module.css"
 import { NewsBaner } from "../../components/NewsBaner/NewsBaner"
 import { useEffect, useState } from "react"
-import { getNews } from "../../api/api"
+import { getCategories, getNews } from "../../api/api"
 import { NewsList } from "../../components/NewsList/NewsList"
 import { Skeleton } from "../../components/Skeleton/Skeleton"
 import { Pagination } from "../../components/Pagination/Pagination"
+import { Categori } from "../../components/Categori/Categori"
 
 
 export const Main = () => {
     const [news, setNews] = useState([])
+    const [categories, setCategories] = useState([])
+    const [selectCategory, setSelectCategory] = useState('All')
     const [isLoading, setISLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
     const totalPage = 10
@@ -17,7 +20,11 @@ export const Main = () => {
     const fethNews = async () => {
         try {
             setISLoading(true)
-            const response = await getNews(currentPage, pageSaze)
+            const response = await getNews({
+                page_number: currentPage,
+                page_size: pageSaze,
+                category: selectCategory === 'All' ? null : selectCategory
+            })
             setNews(response.news)
             setISLoading(false)
             console.log(response.news);
@@ -28,7 +35,23 @@ export const Main = () => {
     }
     useEffect(() => {
         fethNews(currentPage)
-    }, [currentPage])
+    }, [currentPage, selectCategory])
+
+    const fethCategories = async () => {
+        try {
+
+            const response = await getCategories()
+            setCategories(["All", ...response.categories])
+            console.log(response.categories);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        fethCategories()
+    }, [])
 
     const handNextPage = () => {
         if (currentPage < totalPage) {
@@ -48,6 +71,7 @@ export const Main = () => {
 
     return (
         <main className={style.main}>
+            <Categori categories={categories} selectCategory={selectCategory} setSelectCategory={setSelectCategory} />
             {news.length > 0 && !isLoading ? <NewsBaner item={news[0]} /> : <Skeleton count={1} type={'baner'} />}
             <Pagination
                 handNextPage={handNextPage}
