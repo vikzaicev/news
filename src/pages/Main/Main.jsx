@@ -2,7 +2,7 @@ import style from "./style.module.css"
 import { NewsBaner } from "../../components/NewsBaner/NewsBaner"
 import { useEffect, useState } from "react"
 
-import { getLangue, getNews } from "../../api/api"
+import { getLangue, getNews, getCategories } from "../../api/api"
 import { NewsList } from "../../components/NewsList/NewsList"
 import { Skeleton } from "../../components/Skeleton/Skeleton"
 import { Pagination } from "../../components/Pagination/Pagination"
@@ -95,6 +95,7 @@ export const Main = () => {
 
     return (
         <main className={style.main}>
+            <Langue languages={languages} />
             <Categori categories={categories} selectCategory={selectCategory} setSelectCategory={setSelectCategory} />
             {news.length > 0 && !isLoading ? <NewsBaner item={news[0]} /> : <Skeleton count={1} type={'baner'} />}
             <Pagination
