@@ -39,3 +39,19 @@ export const getCategories = async () => {
 
     }
 }
+export const getLangue = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}available/languages`,
+            {
+                params: {
+                    apiKey: API_KEY,
+
+                }
+            }
+        )
+        return response.data;
+    } catch (error) {
+        console.log(error);
+
+    }
+}
