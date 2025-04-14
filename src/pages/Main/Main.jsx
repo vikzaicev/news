@@ -1,7 +1,6 @@
 import style from "./style.module.css"
 import { NewsBaner } from "../../components/NewsBaner/NewsBaner"
 import { useEffect, useState } from "react"
-
 import { getLangue, getNews, getCategories } from "../../api/api"
 import { NewsList } from "../../components/NewsList/NewsList"
 import { Skeleton } from "../../components/Skeleton/Skeleton"
@@ -17,6 +16,7 @@ export const Main = () => {
     const [selectCategory, setSelectCategory] = useState('All')
     const [isLoading, setISLoading] = useState(true)
     const [languages, setLanguages] = useState([])
+    const [selectLanguage, setSelectLanguage] = useState('en')
     const [currentPage, setCurrentPage] = useState(1)
     const totalPage = 10
     const pageSaze = 10
@@ -27,11 +27,12 @@ export const Main = () => {
             const response = await getNews({
                 page_number: currentPage,
                 page_size: pageSaze,
-                category: selectCategory === 'All' ? null : selectCategory
+                category: selectCategory === 'All' ? null : selectCategory,
+                lang: selectLanguage === 'en' ? null : 'ru'
             })
             setNews(response.news)
             setISLoading(false)
-            console.log(response.news);
+            console.log(lang);
 
         } catch (error) {
             console.log(error);
@@ -39,14 +40,14 @@ export const Main = () => {
     }
     useEffect(() => {
         fethNews(currentPage)
-    }, [currentPage, selectCategory])
+    }, [currentPage, selectCategory, selectLanguage])
 
     const fethCategories = async () => {
         try {
 
             const response = await getCategories()
             setCategories(["All", ...response.categories])
-            console.log(response.categories);
+            // console.log(response.categories);
 
         } catch (error) {
             console.log(error);
@@ -59,7 +60,6 @@ export const Main = () => {
 
     const fethLaguages = async () => {
         try {
-
             const response = await getLangue()
             let data = []
             for (let key in response.languages) {
@@ -67,7 +67,7 @@ export const Main = () => {
             }
             setLanguages(data)
 
-            console.log(data);
+            console.log(response.languages);
 
         } catch (error) {
             console.log(error);
@@ -95,7 +95,7 @@ export const Main = () => {
 
     return (
         <main className={style.main}>
-            <Langue languages={languages} />
+            <Langue languages={languages} setSelectLanguage={setSelectLanguage} selectLanguage={selectLanguage} />
             <Categori categories={categories} selectCategory={selectCategory} setSelectCategory={setSelectCategory} />
             {news.length > 0 && !isLoading ? <NewsBaner item={news[0]} /> : <Skeleton count={1} type={'baner'} />}
             <Pagination

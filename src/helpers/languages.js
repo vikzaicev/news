@@ -1,0 +1,26 @@
+export let lang
+switch (key) {
+    case Arabic: "ar";
+    case Chinese: "zh";
+    case Czech: "cs";
+    case Danish: "da";
+    case Dutch: "nl";
+    case English: "en";
+    case Finnish: "fi";
+    case French: "fr";
+    case German: "de";
+    case Greek: "el";
+    case Hindi: "hi";
+    case Hungarian: "hu";
+    case Italian: "it";
+    case Japanese: "ja";
+    case Korean: "ko";
+    case Malay: "msa";
+    case Portuguese: "pt";
+    case Russian: "ru";
+    case Serbian: "sr";
+    case Spanish: "es";
+    case Thai: "th";
+    case Turkish: "tr";
+    case Vietnamise: "vi";
+}
