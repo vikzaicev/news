@@ -22,3 +22,19 @@ export const getNews = async (page_number = 1, page_size = 10) => {
 
     }
 }
+export const getLangue = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}available/languages`,
+            {
+                params: {
+                    apiKey: API_KEY,
+
+                }
+            }
+        )
+        return response.data;
+    } catch (error) {
+        console.log(error);
+
+    }
+}
