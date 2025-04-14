@@ -7,7 +7,7 @@ export const Categori = ({ categories, setSelectCategory, selectCategory }) => {
         <div className={style.categori}>
             {categories.map((item) => {
                 return (
-                    <div className={style.item} key={item} onClick={() => setSelectCategory(item)}>{item}</div>
+                    <div className={selectCategory == item ? style.activ : style.item} key={item} onClick={() => setSelectCategory(item)}>{item}</div>
                 )
             })}
         </div>

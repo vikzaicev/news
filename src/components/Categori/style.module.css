@@ -1,13 +1,28 @@
 .categori {
     display: flex;
-
+    width: 100%;
     gap: 8px;
+    align-items: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
 }
 
-.item {
-    border: 1px solid #504b4b;
+.item,
+.activ {
+    display: flex;
+    align-items: center;
     background-color: #796969;
     border-radius: 12px;
     padding: 5px 10px;
     cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+.activ {
+    color: aqua;
+    background-color: #856767;
+}
+::-webkit-scrollbar {
+    display: none;
 }
