@@ -15,6 +15,7 @@ export const Main = () => {
     const [news, setNews] = useState([])
     const [categories, setCategories] = useState([])
     const [selectCategory, setSelectCategory] = useState('All')
+    const [selectLangyage, setSelectLanguage] = useState('en')
     const [isLoading, setISLoading] = useState(true)
     const [languages, setLanguages] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
@@ -27,11 +28,12 @@ export const Main = () => {
             const response = await getNews({
                 page_number: currentPage,
                 page_size: pageSaze,
-                category: selectCategory === 'All' ? null : selectCategory
+                category: selectCategory === 'All' ? null : selectCategory,
+                lang: selectLangyage === 'en' ? null : 'ru'
             })
             setNews(response.news)
             setISLoading(false)
-            console.log(response.news);
+            // console.log(response.news);
 
         } catch (error) {
             console.log(error);
@@ -39,14 +41,14 @@ export const Main = () => {
     }
     useEffect(() => {
         fethNews(currentPage)
-    }, [currentPage, selectCategory])
+    }, [currentPage, selectCategory, selectLangyage])
 
     const fethCategories = async () => {
         try {
 
             const response = await getCategories()
             setCategories(["All", ...response.categories])
-            console.log(response.categories);
+            // console.log(response.categories);
 
         } catch (error) {
             console.log(error);
@@ -67,7 +69,7 @@ export const Main = () => {
             }
             setLanguages(data)
 
-            console.log(data);
+            // console.log(data);
 
         } catch (error) {
             console.log(error);
@@ -95,7 +97,7 @@ export const Main = () => {
 
     return (
         <main className={style.main}>
-            <Langue languages={languages} />
+            <Langue languages={languages} selectLangyage={selectLangyage} setSelectLanguage={setSelectLanguage} />
             <Categori categories={categories} selectCategory={selectCategory} setSelectCategory={setSelectCategory} />
             {news.length > 0 && !isLoading ? <NewsBaner item={news[0]} /> : <Skeleton count={1} type={'baner'} />}
             <Pagination
