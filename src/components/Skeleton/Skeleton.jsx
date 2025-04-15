@@ -1,5 +1,5 @@
 import style from "./style.module.css"
-import { solution } from "../Codewars"
+import { solution } from "../../helpers/Codewars"
 export const Skeleton = ({ count = 1, type = 'baner' }) => {
     return (
         <>
