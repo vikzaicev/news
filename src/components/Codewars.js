@@ -28,7 +28,7 @@ function climb(n) {
             res.push(n)
         }
     }
-    console.log(res.reverse());
+    // console.log(res.reverse());
 }
 //climb(10)
 
@@ -54,7 +54,7 @@ export function lettersToNumbers(s) {
         if (index > -1) res.push(index)
 
     }
-    console.log(res.reduce((a, b) => a + b, 0));
+    // console.log(res.reduce((a, b) => a + b, 0));
 
 }
 //lettersToNumbers("I Love You")
@@ -91,7 +91,7 @@ export function solution(n) {
     let count2 = 0
     while (count2 < 5) {
         l = Number(n.toFixed(1)) - 0.1
-        console.log(l);
+        // console.log(l);
 
 
         if (l == num) {
@@ -118,13 +118,13 @@ function solve(arr) {
         }
         res.push(maxArr[i], minArr[i])
     }
-    console.log(res.slice(0, arr.length));
+    // console.log(res.slice(0, arr.length));
 };
 //solve([15, 11, 10, 7, 12])
 
 function dotProduct(v1, v2) {
     for (let key in v1) {
-        console.log(key, v1[key]);
+        // console.log(key, v1[key]);
 
     }
 
