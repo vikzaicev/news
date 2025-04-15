@@ -8,7 +8,8 @@ import { Skeleton } from "../../components/Skeleton/Skeleton"
 import { Pagination } from "../../components/Pagination/Pagination"
 import { Langue } from "../../components/Langue/Langue"
 import { Categori } from "../../components/Categori/Categori"
-
+import { Search } from "../../components/Search/Search"
+import { useDebounce } from "../../helpers/hooks/useDebounce"
 
 
 export const Main = () => {
@@ -19,8 +20,11 @@ export const Main = () => {
     const [isLoading, setISLoading] = useState(true)
     const [languages, setLanguages] = useState([])
     const [currentPage, setCurrentPage] = useState(1)
+    const [keywords, setKeyword] = useState('')
     const totalPage = 10
     const pageSaze = 10
+
+    const debouncedKeyword = useDebounce(keywords, 1500)
 
     const fethNews = async () => {
         try {
@@ -29,7 +33,8 @@ export const Main = () => {
                 page_number: currentPage,
                 page_size: pageSaze,
                 category: selectCategory === 'All' ? null : selectCategory,
-                lang: selectLangyage === 'en' ? null : 'ru'
+                language: selectLangyage === 'en' ? null : 'ru',
+                keywords: debouncedKeyword
             })
             setNews(response.news)
             setISLoading(false)
@@ -41,7 +46,7 @@ export const Main = () => {
     }
     useEffect(() => {
         fethNews(currentPage)
-    }, [currentPage, selectCategory, selectLangyage])
+    }, [currentPage, selectCategory, selectLangyage, debouncedKeyword])
 
     const fethCategories = async () => {
         try {
@@ -99,6 +104,7 @@ export const Main = () => {
         <main className={style.main}>
             <Langue languages={languages} selectLangyage={selectLangyage} setSelectLanguage={setSelectLanguage} />
             <Categori categories={categories} selectCategory={selectCategory} setSelectCategory={setSelectCategory} />
+            <Search keywords={keywords} setKeyword={setKeyword} />
             {news.length > 0 && !isLoading ? <NewsBaner item={news[0]} /> : <Skeleton count={1} type={'baner'} />}
             <Pagination
                 handNextPage={handNextPage}
