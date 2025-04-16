@@ -1,7 +1,5 @@
 import style from "./style.module.css"
 
-
-
 export const Categori = ({ categories, setSelectCategory, selectCategory }) => {
     return (
         <div className={style.categori}>

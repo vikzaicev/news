@@ -1,7 +1,6 @@
 import style from "./style.module.css"
 import { NewsBaner } from "../../components/NewsBaner/NewsBaner"
 import { useEffect, useState } from "react"
-
 import { getLangue, getNews, getCategories } from "../../api/api"
 import { NewsList } from "../../components/NewsList/NewsList"
 import { Skeleton } from "../../components/Skeleton/Skeleton"
@@ -10,7 +9,6 @@ import { Langue } from "../../components/Langue/Langue"
 import { Categori } from "../../components/Categori/Categori"
 import { Search } from "../../components/Search/Search"
 import { useDebounce } from "../../helpers/hooks/useDebounce"
-
 
 export const Main = () => {
     const [news, setNews] = useState([])
@@ -33,7 +31,7 @@ export const Main = () => {
                 page_number: currentPage,
                 page_size: pageSaze,
                 category: selectCategory === 'All' ? null : selectCategory,
-                language: selectLangyage === 'en' ? null : 'ru',
+                language: selectLangyage === 'en' ? null : selectLangyage,
                 keywords: debouncedKeyword
             })
             setNews(response.news)
@@ -54,7 +52,6 @@ export const Main = () => {
             const response = await getCategories()
             setCategories(["All", ...response.categories])
             // console.log(response.categories);
-
         } catch (error) {
             console.log(error);
         }
@@ -66,16 +63,9 @@ export const Main = () => {
 
     const fethLaguages = async () => {
         try {
-
             const response = await getLangue()
-            let data = []
-            for (let key in response.languages) {
-                data.push(key)
-            }
-            setLanguages(data)
-
-            // console.log(data);
-
+            setLanguages(response.languages)
+            // console.log(response.languages);
         } catch (error) {
             console.log(error);
         }
