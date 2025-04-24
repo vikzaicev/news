@@ -13,7 +13,6 @@ export const Langue = ({ languages, selectLangyage, setSelectLanguage }) => {
             }
         }
     }
-    console.log(selectLangyage);
 
     return (
         <div className={style.langue}>

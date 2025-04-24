@@ -131,3 +131,71 @@ function dotProduct(v1, v2) {
 
 }
 //dotProduct({ x: 2, y: 0, z: -1 }, { x: 0, y: -2, z: 1 })
+
+function gcContent(dna) {
+    let cur = 0
+    for (let char of dna) {
+        if (char == 'C' || char == 'G') {
+            cur++
+        }
+    }
+    console.log(dna.length);
+    let res = (cur / dna.length) * 100
+
+}
+//gcContent("**********************")
+
+function head(arr) {
+    console.log(arr[0]);
+}
+//head([1, 2, 3, 4, 5])
+
+function tail(arr) {
+    console.log(arr.slice(1));
+}
+//tail([1, 2, 3, 4, 5])
+
+function init(arr) {
+    console.log(arr.slice(0, arr.length - 1));
+}
+//init([1, 2, 3, 4, 5])
+function last(arr) {
+    console.log(arr[arr.length - 1]);
+
+}
+//last([1, 2, 3, 4, 5])
+
+function getRequired(player, enemy) {
+    const player1 = player.reduce((a, b) => a + b, 0)
+    const player2 = enemy.reduce((a, b) => a + b, 0)
+    if (player1 > player2 + 6) {
+        return "Auto-win";
+    }
+    if (player1 == player2) {
+        return "Random";
+    }
+    if (player1 > player2) {
+        const player2Max = player2 + 6
+        const player1Max = player2Max + 1 - player1
+        return `(${player1Max}..6)`;
+    }
+    if (player1 + 6 == player2 + 1) {
+        return "Pray for a tie!";
+    }
+    if (player1 + 6 > player1 + 6 - 1 - player2) {
+
+        return `(1..${player1 + 6 - 1 - player2})`;
+    }
+    if (player1 < player2 + 6) {
+        return "Auto-lose";
+    }
+
+}
+//getRequired([9, 1], [2, 0])
+
+function fill_gaps(timesheet) {
+
+    console.log(timesheet.findIndex(null));
+
+}
+//fill_gaps([1, null, null, null, 1])

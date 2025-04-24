@@ -3,7 +3,6 @@ import style from "./style.module.css"
 
 export const NewsBaner = ({ item }) => {
 
-
     return (
         <div className={style.baner}>
             <Image image={item?.image} />
@@ -12,3 +11,4 @@ export const NewsBaner = ({ item }) => {
         </div>
     )
 }
+
