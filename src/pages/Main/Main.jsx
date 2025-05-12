@@ -11,6 +11,7 @@ import { useDebounce } from "../../helpers/hooks/useDebounce"
 import { PAGE_SIZE, TOTAL_PAGES } from "../../constans/constants"
 import { Skeleton } from "../../components/Skeleton/Skeleton"
 import { useFilters } from "../../helpers/hooks/useFilters"
+import { LatestNews } from "../../components/LatestNews/LatestNews"
 //import { useFetch } from "../../helpers/hooks/useFetch"
 
 export const Main = () => {
@@ -141,7 +142,8 @@ export const Main = () => {
                 selectCategory={filters.category}
                 setSelectCategory={(category) => changeFilters("category", category)} /> : null}
             <Search keywords={filters.keywords} setKeyword={(keywords) => changeFilters("keywords", keywords)} />
-            {news.length > 0 && !isLoading ? <NewsBaner item={news[0]} /> : <Skeleton count={1} type={'baner'} />}
+            {news.length > 0 && !isLoading ? <LatestNews banners={news} isLoading={isLoading} /> : <Skeleton count={9} type={'baner'} />}
+            {/* {news.length > 0 && !isLoading ? <NewsBaner item={news[0]} /> : <Skeleton count={1} type={'baner'} />} */}
             <Pagination
                 handNextPage={handNextPage}
                 handPrevPage={handPrevPage}

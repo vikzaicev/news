@@ -14,6 +14,7 @@ export const Langue = ({ languages, selectLangyage, setSelectLanguage }) => {
         }
     }
 
+
     return (
         <div className={style.langue}>
             {data.map((item) => {
