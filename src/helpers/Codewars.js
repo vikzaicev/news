@@ -199,3 +199,28 @@ function fill_gaps(timesheet) {
 
 }
 //fill_gaps([1, null, null, null, 1])
+
+function ìsZeroBalanced(n) {
+    if (n.length == 0) return false;
+    let arr = n.map((i) => { if (i !== 0) return i })
+    console.log(arr);
+    let res = n.sort((a, b) => a - b)
+    console.log(res);
+    for (let i = 0; i < res.length / 2; i++) {
+        let el = res[i]
+        console.log(el, (res.length / 2));
+
+    }
+
+}
+//ìsZeroBalanced([3, -3, 5, -5, 7, 1, -7, 0])
+
+function change(string) {
+    let alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    let res = []
+    for (let alph of alphabet) {
+        string.toLowerCase().includes(alph) ? res.push(1) : res.push(0)
+    }
+    console.log(res.join(''))
+}
+//change("a **&  bZ")
